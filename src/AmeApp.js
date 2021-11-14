@@ -52,10 +52,10 @@ function App() {
             <Route
               path="/"
               exact
-              //children={children}
-              component={HomePage}
+            // children={children}
+            // component={HomePage}
               //component={() => <HomePage />}
-            //   render={render}
+              render={render}
               ></Route>
             <Route path="/user" component={UserPage} />
             <Route path="/login" component={LoginPage} />
@@ -69,3 +69,13 @@ function App() {
 }
 
 export default App;
+
+function children(props) {
+    console.log("children props", props); //sy-log
+    return <div>children</div>;
+  }
+  
+  function render(props) {
+    console.log("render props", props); //sy-log
+    return <div>render</div>;
+  }
