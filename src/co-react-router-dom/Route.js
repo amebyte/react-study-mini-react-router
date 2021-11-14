@@ -10,13 +10,15 @@ class Route extends Component {
             const {location} = context
             // const match = location.pathname === path
             const match = computedMatch ? computedMatch : path ? matchPath(location.pathname, this.props) : context.match
-            const props = { match, ...context}
+            const props = { ...context, match}
             // return match ? React.createElement(component) : null
 
-            return match ?
+            return <RouterContext.Provider value={props}>{
+                match ?
             children ? typeof children === 'function' ? children(props) : children
             : component ? React.createElement(component, props) : render ? render(props) : null
             : typeof children === 'function' ? children(props): null
+            }</RouterContext.Provider>
 
         }}</RouterContext.Consumer>
     }
