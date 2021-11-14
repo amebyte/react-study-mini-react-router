@@ -24,7 +24,7 @@ import {
     useLocation,
     useRouteMatch,
     useParams,
-  //   withRouter,
+    withRouter,
   // Redirect,
 } from './co-react-router-dom/'
 
@@ -80,25 +80,53 @@ function render(props) {
   return <div>render</div>
 }
 
-function Product(props) {
-  console.log("props", props); //sy-log
-    console.log("props", props); //sy-log
+// function Product(props) {
+//   console.log("props", props); //sy-log
+//     console.log("props", props); //sy-log
 
-  const history = useHistory(),
-    location = useLocation(),
-    match = useRouteMatch(),
-    params = useParams();
-  console.log("Product props", history, location, match, params); 
-//   const { match } = props
-  const { url} = match;
-  // const {id} = params;
-  return (
-    <div>
-      <h1>Search-{params.id}</h1>
-      <Link to={url + "/detail"}>详情</Link>
-      <Route path={url + "/detail"} component={Detail} />
-    </div>
-  );
+//   const history = useHistory(),
+//     location = useLocation(),
+//     match = useRouteMatch(),
+//     params = useParams();
+//   console.log("Product props", history, location, match, params); 
+// //   const { match } = props
+//   const { url} = match;
+//   // const {id} = params;
+//   return (
+//     <div>
+//       <h1>Search-{params.id}</h1>
+//       <Link to={url + "/detail"}>详情</Link>
+//       <Route path={url + "/detail"} component={Detail} />
+//     </div>
+//   );
+// }
+
+@withRouter
+class Product extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {confirm: true};
+  }
+  render() {
+    const {match} = this.props;
+    const {url} = match;
+    const {id} = match.params;
+
+    return (
+      <div>
+        Product:{id}
+        <Link to={url + "/detail"}>详情</Link>
+        <Route path={url + "/detail"} component={Detail} />
+        {/* <Prompt
+          when={this.state.confirm}
+          // message="Are you sure you want to leave?"
+          message={(location) => {
+            return "Are you sure you want to leave-fun";
+          }}
+        /> */}
+      </div>
+    );
+  }
 }
 
 function Detail(props) {
