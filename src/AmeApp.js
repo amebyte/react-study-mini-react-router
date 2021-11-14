@@ -25,7 +25,7 @@ import {
     useRouteMatch,
     useParams,
     withRouter,
-  // Redirect,
+  Redirect,
 } from './co-react-router-dom/'
 
 import HomePage from './pages/HomePage'
@@ -53,12 +53,13 @@ function App() {
               path="/"
               exact
               // children={children}
-              // component={HomePage}
+              component={HomePage}
               //component={() => <HomePage />}
-              render={render}
+            //   render={render}
             ></Route>
             <Route path="/user" component={UserPage} />
             <Route path="/login" component={LoginPage} />
+            <Route path="/welcome" render={() => <Welcome />} />
             <Route path="/product/:id" render={() => <Product />} />
             <Route component={_404Page} />
           </Switch>
@@ -79,6 +80,11 @@ function render(props) {
   console.log('render props', props) //sy-log
   return <div>render</div>
 }
+
+function Welcome(props) {
+    console.log('render props', props) //sy-log
+    return <div>Welcome</div>
+  }
 
 // function Product(props) {
 //   console.log("props", props); //sy-log
