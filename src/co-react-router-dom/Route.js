@@ -6,10 +6,10 @@ import matchPath from './matchPath'
 class Route extends Component {
     render() {
         return <RouterContext.Consumer>{context => {
-            const {path, children, component, render} = this.props
+            const {path, children, component, render, computedMatch} = this.props
             const {location} = context
             // const match = location.pathname === path
-            const match = matchPath(location.pathname, this.props)
+            const match = computedMatch ? computedMatch : path ? matchPath(location.pathname, this.props) : context.match
             const props = { match, ...context}
             // return match ? React.createElement(component) : null
 

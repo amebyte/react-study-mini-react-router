@@ -19,7 +19,7 @@ import {
   BrowserRouter as Router,
   Route,
   Link,
-//   Switch,
+  Switch,
 //   useHistory,
 //   useLocation,
 //   useRouteMatch,
@@ -48,7 +48,7 @@ function App() {
 
           {/* 独占路由 */}
           {/*  ! Switch只渲染第一个 匹配 的Route或者Redirect */}
-          {/* <Switch> */}
+          <Switch>
             <Route
               path="/"
               exact
@@ -61,7 +61,7 @@ function App() {
             <Route path="/login" component={LoginPage} />
             {/* <Route path="/product/:id" render={() => <Product />} /> */}
             <Route component={_404Page} />
-          {/* </Switch> */}
+          </Switch>
         </Router>
       )}
     </div>
